@@ -6,15 +6,12 @@ from db.schemas.link import link_schema
 from db.client import db_client
 from fastapi.responses import RedirectResponse , FileResponse
 
-router = APIRouter(prefix="", responses={status.HTTP_404_NOT_FOUND: {"description": "Not found Link"}})
+router = APIRouter(prefix="/s", responses={status.HTTP_404_NOT_FOUND: {"description": "Not found Link"}})
 
 
 
 
-@router.get("/")
-async def form():
-    
-    return FileResponse("static/templates/index.html")
+
 
 @router.get("/{short_code}")
 async def get_link(short_code: str):

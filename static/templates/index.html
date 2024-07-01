@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Link</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <title>lueyo Short Links</title>
     <link rel="icon" href="./static/lueyo.png">
     <style> 
         body {
@@ -74,6 +74,19 @@
         button.copiado {
             background-color: #28a745;
         }
+        @media (min-width: 1024px) {
+            body {
+                font-size: 1.2rem; /* Increase base font size for larger screens */
+            }
+            input[type="text"], input[type="submit"], button {
+                padding: 1rem; /* Increase padding for better touch */
+                width: 100%;
+                max-width: 500px; /* Increase max width for larger screens */
+            }
+            span {
+                font-size: 2rem; /* Increase font size for better readability */
+            }
+        }
         </style>
     
 </head>
@@ -114,9 +127,9 @@
                             const span = document.createElement('span');
                             const button = document.createElement('button');
                             button.textContent = '📋';
-                            const url = `${hostname}/${short_code}`;
+                            const url = `${hostname}/s/${short_code}`;
 
-                            span.innerHTML = `Created Successfully: <a href="/${short_code}" target="_blank">${url}</a>`;
+                            span.innerHTML = `Created Successfully: <a href="/s/${short_code}" target="_blank">${url}</a>`;
 
                             // Event listener for the button
                             button.addEventListener('click', function() {

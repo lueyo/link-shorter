@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --error-color: #d33;
+            --border-color: #ccc;
+            --background-color: #fff;
+            --text-color: #333;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            padding-top: 50px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+        }
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 0 20px;
+        }
+        .error-container {
+            text-align: left;
+            max-width: 600px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--background-color);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: var(--error-color);
+            margin-top: 0;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--error-color);
+            color: var(--background-color);
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: darken(var(--error-color), 10%);
+        }
+        @media (max-width: 768px) {
+            .error-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <section class="error-container">
+            <header>
+                <h1>Error</h1>
+            </header>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+            <a href="/">Go to Homepage</a>
+        </section>
+    </main>
+</body>
+</html>

@@ -9,3 +9,7 @@ router = APIRouter(prefix="")
 async def form():
     
     return FileResponse("static/templates/index.html")
+
+@router.get("/ping")
+async def ping():
+    return {"ping": "pong"}

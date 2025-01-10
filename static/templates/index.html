@@ -5,77 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <title>lueyo Short Links</title>
     <link rel="icon" href="./static/lueyo.png">
-    <style> 
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
-        h1 {
-            margin-bottom: 1rem;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        input[type="text"] {
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            width: 100%;
-            max-width: 300px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="submit"] {
-            padding: 0.5rem;
-            width: 100%;
-            max-width: 300px;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        
-        span {
-            display: block;
-            margin-top: 2rem;
-            padding: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            //add text style in span
-            font-size: 1.5rem;
-            font-weight: bold;
-            font-family: Arial, sans-serif;
-        }
-        button {
-            padding: 0.5rem;
-            margin-left: 1rem;
-            border: none;
-            border-radius: 4px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        button.copiado {
-            background-color: #28a745;
-        }
-
-        </style>
+    <link rel="stylesheet" href="./static/styles.css">
+    
     
 </head>
 <body>
@@ -84,76 +15,7 @@
             <input type="text" name="url" placeholder="URL">
             <input type="submit" value="Add">
         </form>
-        <script>
-            const hostname = location.hostname;
-            document.addEventListener('DOMContentLoaded', function() {
-                const form = document.querySelector('form');
-                form.addEventListener('submit', function(event) {
-                    event.preventDefault(); // Prevent the default form submission
-                    const url = document.querySelector('input[name="url"]').value;
-                    fetch('/s/', { // Changed the fetch URL to '/s/'
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ url: url }), // Send the data as JSON
-                    })
-                    .then(response => {
-                        console.log(response); // Log the raw response
-                        if (response.status === 201 || response.status === 200) {
-                            return response.json().then(data => {
-                                console.log(data); // Log the parsed JSON
-                                short_code = data.short_code;
-                                // obtain the short_code from the data object and display it
-                                console.log(short_code);
-            
-                                let existingSpan = document.querySelector('body > span');
-                                if (existingSpan) {
-                                    existingSpan.remove();
-                                }
-                                // Assuming short_code and hostname are defined and contain the necessary values
-                                const span = document.createElement('span');
-                                const button = document.createElement('button');
-                                button.textContent = '📋';
-                                const url = `https://${hostname}/s/${short_code}`;
-
-                                span.innerHTML = `Created Successfully: <a href="/s/${short_code}" target="_blank">${url}</a>`;
-
-                                // Event listener for the button
-                                button.addEventListener('click', function() {
-                                    navigator.clipboard.writeText(url).then(() => {
-                                        console.log('URL copied to clipboard');
-                                        button.classList.add('copiado'); // Añade la clase .copiado al botón
-                                        setTimeout(() => {
-                                            button.classList.remove('copiado'); // Quita la clase .copiado después de 3 segundos
-                                        }, 3000); // 3000 milisegundos = 3 segundos
-                                    }).catch(err => {
-                                        console.error('Error in copying URL: ', err);
-                                    });
-                                });
-                                // Append the button to the span
-                                span.appendChild(button);
-            
-                                
-                                document.body.appendChild(span);
-                                console.log(data);
-                            });
-                        } else {
-                            let existingSpan = document.querySelector('body > span');
-                            if (existingSpan) {
-                                existingSpan.remove();
-                            }
-                            const span = document.createElement('span');
-                            span.textContent = 'Error';
-                            document.body.appendChild(span);
-                            return Promise.reject('Failed to create');
-                        }
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
-                });
-            });
-                </script>
+        <script src="./static/script.js">
+        </script>
 </body>
 </html>

@@ -9,7 +9,8 @@ class LinkService:
 
     def genCode(self):
         codigo = ""
-        for _ in range(11):
+        length = random.randint(6, 8)
+        for _ in range(length):
             char_type = random.choice(['uppercase', 'lowercase', 'number'])
             if char_type == 'uppercase':
                 codigo += chr(random.randrange(65, 91))

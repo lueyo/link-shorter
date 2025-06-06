@@ -1,5 +1,5 @@
 
-const hostname = location.hostname;
+const hostname = "lueyo.es";
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
     form.addEventListener('submit', function(event) {
@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify({ url: url }), // Send the data as JSON
         })
         .then(response => {
-            console.log(response); // Log the raw response
+            //console.log(response); // Log the raw response
             if (response.status === 201 || response.status === 200) {
                 return response.json().then(data => {
-                    console.log(data); // Log the parsed JSON
+                    //console.log(data); // Log the parsed JSON
                     short_code = data.short_code;
                     // obtain the short_code from the data object and display it
-                    console.log(short_code);
+                    //console.log(short_code);
 
                     let existingSpan = document.querySelector('body > span');
                     if (existingSpan) {
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Event listener for the button
                     button.addEventListener('click', function() {
                         navigator.clipboard.writeText(url).then(() => {
-                            console.log('URL copied to clipboard');
+                            //console.log('URL copied to clipboard');
                             button.classList.add('copiado'); // Añade la clase .copiado al botón
                             setTimeout(() => {
                                 button.classList.remove('copiado'); // Quita la clase .copiado después de 3 segundos
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     
                     document.body.appendChild(span);
-                    console.log(data);
+                    //console.log(data);
                 });
             } else {
                 let existingSpan = document.querySelector('body > span');

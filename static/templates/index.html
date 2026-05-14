@@ -1,22 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>lueyo Short Links</title>
-    <link rel="icon" href="./static/lueyo.png">
-    <link rel="stylesheet" href="./static/styles.css">
-    
-    
+    <link rel="icon" href="static/lueyo.png">
+    <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-    <h1>Add URL to Short</h1>
-    <form action="/s/" method="post">
-            <input type="text" name="url" placeholder="URL">
-            <input type="password" name="password" placeholder="Password (optional)">
-            <input type="submit" value="Add">
+    <div class="card">
+        <img src="static/lueyo.png" alt="Logo" class="logo">
+        <h1>Crear Enlace Corto</h1>
+        <p class="subtitle">Ingresa una URL para acortarla</p>
+        <form action="/s/" method="post">
+            <div class="input-group">
+                <label for="url">URL</label>
+                <input type="text" id="url" name="url" placeholder="https://ejemplo.com" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Contraseña (opcional)</label>
+                <input type="password" id="password" name="password" placeholder="Protege tu enlace">
+            </div>
+            <button type="submit" class="btn btn-primary">Crear Enlace</button>
         </form>
-        <script src="./static/script.js">
-        </script>
+    </div>
+    <script src="static/script.js"></script>
 </body>
 </html>

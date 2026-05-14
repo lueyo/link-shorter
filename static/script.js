@@ -1,4 +1,3 @@
-
 const hostname = "lueyo.es";
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('form');
@@ -21,38 +20,50 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.status === 201 || response.status === 200) {
                 return response.json().then(data => {
                     short_code = data.short_code;
-                    let existingSpan = document.querySelector('body > span');
-                    if (existingSpan) {
-                        existingSpan.remove();
+                    const existingResult = document.querySelector('.result');
+                    if (existingResult) {
+                        existingResult.remove();
                     }
-                    const span = document.createElement('span');
-                    const button = document.createElement('button');
-                    button.textContent = '📋';
                     const shortUrl = `https://${hostname}/s/${short_code}`;
 
-                    span.innerHTML = `Created Successfully: <a href="/s/${short_code}" target="_blank">${shortUrl}</a>`;
+                    const resultDiv = document.createElement('div');
+                    resultDiv.className = 'result';
 
-                    button.addEventListener('click', function() {
+                    const urlSpan = document.createElement('div');
+                    urlSpan.className = 'result-url';
+                    urlSpan.textContent = shortUrl;
+
+                    const copyBtn = document.createElement('button');
+                    copyBtn.className = 'btn-copy';
+                    copyBtn.textContent = 'Copiar';
+
+                    copyBtn.addEventListener('click', function() {
                         navigator.clipboard.writeText(shortUrl).then(() => {
-                            button.classList.add('copiado');
+                            copyBtn.classList.add('copied');
+                            copyBtn.textContent = '✓ Copiado';
                             setTimeout(() => {
-                                button.classList.remove('copiado');
+                                copyBtn.classList.remove('copied');
+                                copyBtn.textContent = 'Copiar';
                             }, 3000);
                         }).catch(err => {
                             console.error('Error in copying URL: ', err);
                         });
                     });
-                    span.appendChild(button);
-                    document.body.appendChild(span);
+
+                    resultDiv.appendChild(urlSpan);
+                    resultDiv.appendChild(copyBtn);
+                    document.querySelector('.card').appendChild(resultDiv);
                 });
             } else {
-                let existingSpan = document.querySelector('body > span');
-                if (existingSpan) {
-                    existingSpan.remove();
+                const existingResult = document.querySelector('.result');
+                if (existingResult) {
+                    existingResult.remove();
                 }
-                const span = document.createElement('span');
-                span.textContent = 'Error';
-                document.body.appendChild(span);
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'result';
+                resultDiv.style.background = '#fee2e2';
+                resultDiv.textContent = 'Error al crear el enlace';
+                document.querySelector('.card').appendChild(resultDiv);
                 return Promise.reject('Failed to create');
             }
         })

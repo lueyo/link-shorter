@@ -6,20 +6,22 @@
     <title>lueyo Short Links</title>
     <link rel="icon" href="static/lueyo.png">
     <link rel="stylesheet" href="static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="card">
-        <img src="static/lueyo.png" alt="Logo" class="logo">
-        <h1>Crear Enlace Corto</h1>
-        <p class="subtitle">Ingresa una URL para acortarla</p>
+        <h1>Crear Enlace</h1>
+        <p class="subtitle">Pon la URL que quieras acortar</p>
         <form action="/s/" method="post">
             <div class="input-group">
                 <label for="url">URL</label>
-                <input type="text" id="url" name="url" placeholder="https://ejemplo.com" required>
+                <input type="text" id="url" name="url" placeholder="https://..." required>
             </div>
             <div class="input-group">
                 <label for="password">Contraseña (opcional)</label>
-                <input type="password" id="password" name="password" placeholder="Protege tu enlace">
+                <input type="password" id="password" name="password" placeholder="••••••••">
             </div>
             <button type="submit" class="btn btn-primary">Crear Enlace</button>
         </form>

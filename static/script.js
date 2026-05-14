@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 const resultDiv = document.createElement('div');
                 resultDiv.className = 'result';
-                resultDiv.style.background = '#fee2e2';
+                resultDiv.style.background = 'rgba(255, 107, 107, 0.1)';
+                    resultDiv.style.border = '1px solid rgba(255, 107, 107, 0.2)';
                 resultDiv.textContent = 'Error al crear el enlace';
                 document.querySelector('.card').appendChild(resultDiv);
                 return Promise.reject('Failed to create');
